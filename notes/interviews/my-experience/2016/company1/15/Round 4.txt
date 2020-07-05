@@ -1,0 +1,4 @@
+1. What is virtual memory? How is it used?
+2. What is process synchronization? Give an example showing the need for synchronization.
+3. What is database index? Will it be used in the query 'SELECT * FROM TABLE'? If no, then give an example where it will be used.
+4. Explain TCP Handshake in detail.

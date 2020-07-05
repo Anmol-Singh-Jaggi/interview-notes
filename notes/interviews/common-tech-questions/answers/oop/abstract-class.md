@@ -1,0 +1,3 @@
+- Previously, abstract classes could have default implementations of methods whereas interfaces could not, but in Java 8, interfaces can have default methods too.
+- In interface, we can only have final variables.
+- A class can extend just a single abstract class, whereas it can implement multiple interfaces.

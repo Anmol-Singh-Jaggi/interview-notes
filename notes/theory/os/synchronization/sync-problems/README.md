@@ -1,0 +1,8 @@
+- Note that in all the synchronization problems, we can ofcourse implement them in a crude way by using a plain mutex over the entire data structure.
+- Thus converting it into plain old mutual-exclusion / critical-section problem.
+- But that wont achieve stability and defeats the purpose of using multithreading as only 1 thread will be active at one time.
+- Hence, we need to ensure minimal code to be covered within locks for the least amount of time.
+- That is the locking should be as *fine-grained* as possible.
+- The lock should hold the minimum possible data for the minimum possible time.
+- For more info, read:
+  - <https://stackoverflow.com/q/57496477/1925388> -> Go through the videos in my comment!

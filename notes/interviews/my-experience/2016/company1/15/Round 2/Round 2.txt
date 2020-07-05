@@ -1,0 +1,20 @@
+Q1. There are 2 persons P1 and P2 located on an NxN matrix at positions (P1x, P1y) and (P2x, P2y) respectively. Also, there are 'n' gems located at positions (G1x, G1y), (G2x, G2y), (G3x, G3y) .... (Gnx, Gny).
+The two players need to collect all the gems together. At each turn any one of them can collect the gem.
+To collect a gem, the person has to move to that gem's position.
+Also, the gems can be collected only in the specified order. [i.e. First G1, then G2, then G3....then Gn]
+The distance b/w a cell and all if its 8 neighbours is 1. A person can move to any of its 8 neighbours.
+We have to minimize the total distance covered collectively by both of them to collect all the gems.
+
+Solution -:
+
+"The distance b/w a cell and all if its 8 neighbours is 1. A person can move to any of its 8 neighbours."
+ => Distance([x1,y1], [x2,y2]) = max(|x1-x2|, |y1-y2|)
+
+1. Brute Force -:
+    See 2.cpp
+    Complexity -> O(2^n) [At each step, either P1 can move to the next gem or P2]
+
+2. Memoization -:
+    See 1.cpp
+    State -> (position of P1, position of P2, Index of fem to be collected next)
+	Complexity -> Somewhere between O(n^3) and O(n^4)

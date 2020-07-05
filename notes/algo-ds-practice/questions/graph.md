@@ -1,0 +1,80 @@
+# Graph
+
+- BFS.
+- Bidirectional BFS.
+- DFS:
+  - **TODO:** Iterative.
+  - **TODO:** Print all solutions.
+  - Edges.
+- Dijkstra:
+ - Adjacency List.
+ - Adjacency Matrix. -> CAREFUL!! 
+- Floyd Warshall.
+- Kruskal and Prim.
+- Disjoint set.
+- Topological sort:
+  - Kahn's
+  - DFS
+  - **TODO:** Print all solutions.
+- Bipartite check.
+- Flood fill.
+- Undirected Cycle Detection:
+  - DFS.
+  - BFS.
+  - Degrees. -> **Important!!**
+  - Union Find.
+- Directed Cycle Detection:
+ - DFS.
+- Print all the nodes part of a cycle in an undirected graph.
+- Connected components:
+ - DFS
+ - Union-Find
+- Strongly Connected components:
+ - Kosaraju
+ - Tarjan
+ - Condensation graph.
+- Cut point and bridges.
+- Check if graph biconnected.
+- In an array of strings, check if all strings can be chained together to form a circle.
+- Snake and ladder.
+- Capital cities.
+- Alien dictionary.
+- Rotten oranges.
+- Longest path in a DAG.
+- Shortest path in a DAG.
+- Bellman Ford.
+- Number of islands with addLand() queries.
+- Celebrity problem.
+- GCD threshold city connections.
+- Group same connections in phone directory.
+- Mother vertex.
+- Transform one number to another using operations.
+- Detect Eulerian path and circuit.
+- Shortest distance in a boolean graph.
+- Transform one prime to another by just changing 1 digit at a time.
+- Minimum number of people to spread a message.
+- Water jug problem.
+- Stable marriage problem.
+- Number of walks of length k.
+- Directed graph minimum edges to reach all nodes.
+
+----
+
+
+- A*
+- Graph coloring.
+- Travelling Salesman
+- Shortest path from source to destination such that edge weights along the path are alternatively increasing and decreasing.
+- Shortest path from source to destination with exactly k edges.
+- K Centers problem.
+- https://www.geeksforgeeks.org/optimal-read-list-given-number-days/
+- https://www.geeksforgeeks.org/count-nodes-within-k-distance-from-all-nodes-in-a-set/
+- https://www.geeksforgeeks.org/bidirectional-search/
+- Graph caveats for all standard algos.
+- https://www.geeksforgeeks.org/interesting-shortest-path-questions-set-1/
+- https://www.geeksforgeeks.org/edge-coloring-of-a-graph/
+- https://www.spoj.com/problems/tag/scc
+- https://www.hackerearth.com/practice/algorithms/graphs/articulation-points-and-bridges/practice-problems/
+- https://kartikkukreja.wordpress.com/2013/05/16/solving-2-sat-in-linear-time/
+- Biconnected components.
+- Max flow/ Hungarian.

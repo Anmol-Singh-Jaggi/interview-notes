@@ -1,0 +1,19 @@
+Q1. There are "n" transmitters located at different points on a road. Each transmitter has a location "l" and a transmitting power "p".
+    This implies that the transmitter can tranmsit upto "p" units on each side of the road from its current location.
+    You have to output all the segments [l, r] of the road which are receiving signals from more than "k" transmitters.
+		Also, the road starts from the position 0 and goes upto "n".
+		
+Solution -:
+
+	Input -> (vector<pair<int,int>> vec, int k)
+	Output -> vector<pair<int,int>>
+	
+	If an element of the input vector is, say, (5,1), then this transmitter covers the range [4, 6]. So, first transform all the elements in the latter form.
+	Now, initialize an array "freq[]" of size "n" (size of the road) with zeroes.
+	Now, iterate over the input vector, and for each element "[l, r]", increment freq[l] and decrement freq[r+1].
+	Now iterate over freq[], and maintain a cumulative sum of all the elements upto a given point. Update freq[i] with (freq[i] + sum[0, i-1]).
+	In this way, freq[i] now denotes the number of signal reaching the point "i" on the road.
+	No, just accumulate the consecutive points into segments and output the answer.
+	
+	Time complexity -> O(size of the input vector + size of the road) = O(n + n) = O(n)
+	Space complexity -> O(size of the road) = O(n)

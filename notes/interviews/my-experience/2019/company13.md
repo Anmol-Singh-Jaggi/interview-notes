@@ -1,0 +1,1 @@
+Standard qs on DP and 2-pointer-window.

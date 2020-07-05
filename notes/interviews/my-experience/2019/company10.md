@@ -1,0 +1,39 @@
+- Topo sort.
+- Implement a fair Thread pool / Load balancer.
+
+# Fair thread pool.
+
+- Multiple clients are submitting jobs to the thread pool.
+- We dont want just one client's jobs to be executed.
+- Basically we want to avoid starvation and serve every client equally.
+- First solution is to use a blocking queue.
+- The client's runnables will be added to the queue.
+- Threads will keep on consuming and running the runnables.
+- But what if the first 8 tasks are from client 1 and the next 2 are from client 2.
+- Now client 2 has to wait for a long time.
+- The second solution was to assign every thread an integer id starting from 0.
+- And have multiple blocking queues, one for each client.
+- For each thread, if its id is even, it will start consuming tasks from top to bottom.
+- It will consume one task from queue 1, seccond task from queue 2 and so on..
+- However, if the thread id is odd, it will start consuming tasks from bottom to top.
+- In this way, half of the threads are working from top to bottom, and other half from bottom to top.
+- This is a pretty good solution.
+- But then the interviewer changed the definition of fairness.
+- He told that for example, client 1 has 10 tasks already executed, but client 2 has not even submitted any yet.
+- Now client 1 and 2 submit 5 tasks each in parallel.
+- With the above solution, both clients will get their tasks executed alternately.
+- However, the interviewer said that client 1 has already got a lead. So, give more priority to client 2.
+- Meaning that we should execute all the client 2 tasks first until the number of tasks of 2 clients become equal.
+- Then we can again alternate.
+- So for that, I came up with the best solution.
+- We can use a single priority queue for all tasks.
+- While submitting a task, we will assign it a task index (basically signifying how many tasks have been submitted before it).
+- Note that this task indexing is different for every client.
+- This task index will be the priority of a task.
+- In the above example, client 1's next task will get priority 10 (since 10 tasks of client 1 have already been submitted).
+- But client 2's next task will get priority 0 (since this is the very first task for client 2).
+- Client 2's last task will have priority 4.
+- Client 1's last task will have priority 14.
+- Note that lower number means higher priority (basically min heap).
+- Such a fantastic solution to such a vague problem.
+- The interviewer was speechless literally after this.

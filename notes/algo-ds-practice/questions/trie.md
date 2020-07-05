@@ -1,0 +1,3 @@
+- Shortest unique prefix.
+- Count distinct substrings.
+- Longest Common Prefix - Just read this fantastic article - <https://leetcode.com/problems/longest-common-prefix/solution/>.

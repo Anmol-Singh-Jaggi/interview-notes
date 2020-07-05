@@ -1,0 +1,21 @@
+- `Serializable` is just a marker interface.
+- It does not have any methods.
+- The recommendation is to **not use it anywhere**.
+- Its just there so that there is an error if someone tries to serialize a class which should not be serialized.
+- The `ObjectOutputStream.writeObject(Object obj)` and `Object obj = ObjectInputStream.readObject()` methods can be called to serialize any object.
+- However, it will produce a binary Java-specific output, similar to Python's `pickle`.
+- That is why people never use these functions and rather use json etc.
+- If a class implements Serializable, then all the fields should also implement it.
+- An object is serializable only if its class or its superclass implements the Serializable interface.
+- An object is serializable (itself implements the Serializable interface) even if its superclass is not.
+- However, the first superclass in the hierarchy of the serializable class, that does not implements Serializable interface, MUST have a no-arg constructor.
+- If this is violated, `readObject()` will produce a `java.io.InvalidClassException` in runtime.
+- All primitive types are serializable.
+- Transient fields (with transient modifier) are NOT serialized, (i.e., not saved or restored).
+- A class that implements Serializable must mark transient fields of classes that do not support serialization (e.g., a file stream).
+- Static fields (with static modifier) are not serialized.
+- When Object is serialized, JVM associates the serial version number aka, the `serialVersionID`.
+- Its role is to make sure that the class that was serialized is exactly the same as the one which is deserialized into.
+- For example, if the sender makes some changes to the class (adding/removing) a field, and the updates the version id, the consumer will get an error if they are still using older version of the class.
+- JVM generates a version id by default but its compiler-dependent.
+- We can override how serialization happens by overriding `Person.readObject(ObjectInputStream)` and `Person.writeObject(ObjectOutputStream)`.

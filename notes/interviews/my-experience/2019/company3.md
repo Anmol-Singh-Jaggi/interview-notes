@@ -1,0 +1,3 @@
+- Ball weight puzzle.
+- Array of 8 elements find second largest in minimum comparisons.
+- How to compute rand12() from rand6().

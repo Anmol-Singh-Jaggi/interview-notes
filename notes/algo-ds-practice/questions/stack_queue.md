@@ -1,0 +1,14 @@
+- Check if parantheses expression balanced or not.
+- Design a stack that support `getMin()` in O(1).
+- First non-repeating character in a stream.
+- Queue using stacks.
+- Stack using queues.
+- Evaluate infix expression.
+- Evaluate encoded string.
+- Print bracket number.
+- Sliding window max.
+- Sliding window first negative.
+- 2 stacks using single array.
+- Generate binary numbers.
+
+------

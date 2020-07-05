@@ -1,0 +1,24 @@
+- Maximum sum submatrix in a matrix.
+- Largest zero-sum submatrix in a matrix.
+- Matrix print spiral.
+- Given a boolean matrix of size M X N, modify it such that if a cell `[i][j]` is 1 then make all the cells of ith row and jth column as 1 -> In O(1) extra space.
+- Search in sorted matrix.
+- Search in strictly sorted matrix.
+- Largest sum path in matrix.
+- Largest square submatrix with same elements.
+- Sort matrix ascending for row and descending for columns.
+- kth smallest element in sorted matrix.
+- Game of Life -> Just read this https://leetcode.com/problems/game-of-life/solution/
+- Submatrix sum queries.
+- Largest square submatrix with X's at boundary.
+- Largest sub-rectangle with all 1's. 
+- Largest sub-rectangle with same elements.
+- Convert water to land in-place.
+- Rotate a matrix in-place.
+
+------
+
+- https://www.geeksforgeeks.org/maximum-value-in-a-matrix-which-contain-intersecting-concentric-submatrix/
+- https://www.geeksforgeeks.org/print-maximum-sum-square-sub-matrix-of-given-size/
+- https://www.geeksforgeeks.org/maximum-perimeter-of-a-square-in-a-2d-grid/
+- https://www.geeksforgeeks.org/search-element-in-a-spirally-sorted-matrix/

@@ -1,0 +1,20 @@
+# Zookeeper
+- Helps in managing a distributed multi server-client system.
+- Its basically a distributed key-value store.
+- Helps in handling the mechanics of clustering -- heartbeats, distributing updates/configuration, distributed locks, etc.
+- Data is distributed between multiple nodes (this set of nodes is called an "ensemble") and one client connects to any of them (i.e., a specific "server"), migrating if one node fails.
+- All the writes go to the leader which replicates it to follower servers.
+- Read can be done from any servers.
+- ZooKeeper offers the library to construct your synchronization primitives, while the ability to run a distributed server avoids the single-point-of-failure issue you have when using a centralized (broker-like) message repository.
+- ZooKeeper is feature-light, meaning that mechanisms such as leader election, locks, barriers, etc. are not already present, but can be written above the ZooKeeper primitives.
+- In particular, a master node is dynamically chosen by consensus within the ensemble; if the master node fails, the role of master migrates to another node. 
+- Provides automatic node naming.
+- Provides consistency and partition tolerance.
+- Things you can implement using Zookeeper:
+ - Queues.
+ - Locks.
+ - 2-Phase Commit.
+ - Leader election.
+ - Automatic service discovery.
+- One of the best explanations on zookeeper - https://stackoverflow.com/a/40369593/1925388.
+- Zookeeper servers and kafka servers can be the same, however it is recommended to have separate dedicated machines for zookeeper (since its I/O and memory intensive).

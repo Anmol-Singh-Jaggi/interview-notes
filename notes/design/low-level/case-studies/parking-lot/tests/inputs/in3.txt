@@ -1,0 +1,7 @@
+create_parking_lot 5
+park KA-01-HH-1234 White
+leave 1
+status
+slot_number_for_registration_number KA-01-HH-1234
+registration_numbers_for_cars_with_colour White
+slot_numbers_for_cars_with_colour White

@@ -1,0 +1,8 @@
+- Functional vs OOP?
+- Polymorphism vs Inheritence
+- Abstract class vs Interface
+- Java runtime and compile polymorphism
+- Overloading vs overriding in inheritance.
+- What would happen if I implement 2 interfaces with the same method name?
+- Contract between `hashcode()` and `equals()`.
+- SOLID principles with examples.

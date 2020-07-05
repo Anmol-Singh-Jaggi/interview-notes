@@ -1,0 +1,102 @@
+----------------------------------- Question -: ----------------------------
+
+You are given "n" camps and the distances between every 2 consecutive camps.
+You need to travel to all the camps within "k" days, such that the maximum distance travelled in any day is minimum.
+In a day, you can go to any number of camps.
+Also, you can visit camps in a consecutive fashion only.
+
+For example -:
+
+Suppose we have 6 camps ( n = 6 )-:
+A B C D E F
+
+and the following distances between the camps -:
+
+A-B = 50
+B-C = 6
+C-D = 2
+D-E = 100
+E-F = 5
+
+We need to visit them in 3 days ( k = 3 ).
+
+So, the optimal way to travel would be -:
+
+A-B, B-C and C-D on the first day ( Distance covered = 58 )
+D-E on the second day ( Distance covered = 100 )
+E-F on the third day ( Distance covered = 5 )
+
+Therefore, the maximum distance covered in any day is 100 ( on day 2 ).
+
+
+----------------------------------- Solutions -: ----------------------------
+
+Basically, the problem is reduced to dividing the input array into "k" distinct segments(subarrays), such that the maximum(sum of any segment) is minimum.
+Also, we can deduce that the lower limit of the answer is <maximum of all the elements in the array> ( for k == n ), and the upper limit is <sum of all the elements in the array> ( for k == 1 ).
+
+----------------------------------- Solution 1 ( Brute force ) -: ----------------------------
+
+To divide the input array into k segments, we need to find k-1 indices for the partition.
+There could be nC(k-1) sets of such indices.
+We could then find the answer for each configuration and return the minimum.
+
+Time complexity - O( n * nCk )
+
+----------------------------------- Solution 2 -: ----------------------------
+
+We could form a DP solution.
+For each index "i", we can assume that the solution's configuration can have "x" partitioning indices on the left side of "i", and the remaining "k-1-x" partitioning indices on the right side of "i".
+We could then iterate over all "i" and all "x" to find the optimal solution.
+
+Pseudocode -:
+
+int FindAnswer(vector<int> arr, int k, int start, int end)
+{
+	int segmentSize = end - start;
+	if( segmentSize == 0 )
+	{
+		return 0;
+	}
+	
+	// Too many days available
+	if( k >= segmentSize )
+	{
+		return <maximum of all the elements in the segment>;
+	}
+	
+	int ans = INT_MAX;
+	
+	for( int i = start; i <= end; i++ )
+	{
+		for( int x = 0; x < k; x++ )
+		{
+			ans = min( ans, max( FindAnswer(arr, x, start, i), FindAnswer(arr, k - 1 - x, i, end) ) );
+		}
+	}
+	
+	return ans;
+}
+
+int main()
+{
+	vector<int> arr;
+	int n, k;
+	int ans = FindAnswer(arr, k, 0, n);
+	cout << ans;
+}
+
+Time complexity -:
+
+Recursive solution - exponential
+Memoization - O( n * n * k )
+
+----------------------------------- Solution 3 -: ----------------------------
+
+Since, we know that the lower limit of the answer is <maximum of all the elements in the array> , and the upper limit is <sum of all the elements in the array>, we know that the answer is some integer between these 2 bounds.
+So, we could one-by-one check every integer "i" between lower-limit and upper-limit, and see if we can divide the array into segments such that the maximum sum of any segment is <= i.
+
+Time complexity = O( n * sum )
+
+We can further optimize by doing binary search for the answer.
+
+Time complexity  O( n * log(sum) ) 

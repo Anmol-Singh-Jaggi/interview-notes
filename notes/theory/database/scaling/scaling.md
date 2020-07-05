@@ -1,0 +1,51 @@
+# Scaling RDBMS
+
+There are many techniques to scale a relational database:
+
+- **Master-Slave replication**
+  - The master serves reads and writes, replicating writes to one or more slaves, which serve only reads.
+  - If the master goes offline, the system can continue to operate in read-only mode until a slave is promoted to a master or a new master is provisioned.
+- **Master-Master replication**
+  - Both masters serve reads and writes and coordinate with each other on writes.
+  - If either master goes down, the system can continue to operate with both reads and writes.
+- **Federation**
+  - Federation (or functional partitioning) splits up databases by function.
+  - For example, instead of a single, monolithic database, you could have three databases: forums, users, and products, resulting in less read and write traffic to each database and therefore less replication lag.
+  - Smaller databases result in more data that can fit in memory, which in turn results in more cache hits due to improved cache locality.
+  - With no single central master serializing writes you can write in parallel, increasing throughput.
+- **Sharding**
+  - Sharding distributes data across different databases such that each database can only manage a subset of the data.
+  - Common ways to shard a table of users is either through the user's last name initial or the user's geographic location.
+  - Limitations:
+    - You'll need to update your application logic to work with shards, which could result in complex SQL queries.
+    - Data distribution can become lopsided in a shard. For example, a set of power users on a shard could result in increased load to that shard compared to others.
+    - Rebalancing adds additional complexity. A sharding function based on consistent hashing can reduce the amount of transferred data.
+    - Needs [consistent hashing](https://towardsdatascience.com/consistent-hashing-simplified-7fe4e512324).
+- **Denormalization**
+  - Denormalization attempts to improve read performance at the expense of some write performance.
+  - Redundant copies of the data are written in multiple tables to avoid expensive joins.
+  - Once data becomes distributed with techniques such as federation and sharding, managing joins across data centers further increases complexity.
+  - Denormalization might circumvent the need for such complex joins.
+  - In most systems, reads can heavily outnumber writes 100:1 or even 1000:1.
+  - A read resulting in a complex database join can be very expensive, spending a significant amount of time on disk operations.
+- **SQL tuning**
+  - Tighten up the schema
+    - MySQL dumps to disk in contiguous blocks for fast access.
+    - Use CHAR instead of VARCHAR for fixed-length fields.
+      - CHAR effectively allows for fast, random access, whereas with VARCHAR, you must find the end of a string before moving onto the next one.
+      - Use TEXT for large blocks of text such as blog posts. TEXT also allows for boolean searches.
+      - Using a TEXT field results in storing a pointer on disk that is used to locate the text block.
+    - Use INT for larger numbers up to 2^32 or 4 billion.
+    - Use DECIMAL for currency to avoid floating point representation errors.
+    - Avoid storing large BLOBS, store the location of where to get the object instead.
+    - VARCHAR(255) is the largest number of characters that can be counted in an 8 bit number, often maximizing the use of a byte in some RDBMS.
+    - Set the NOT NULL constraint where applicable to improve search performance.
+  - Use good indices
+    - Columns that you are querying (SELECT, GROUP BY, ORDER BY, JOIN) could be faster with indices.
+    - Indices are usually represented as self-balancing B-tree that keeps data sorted and allows searches, sequential access, insertions, and deletions in logarithmic time.
+    - Placing an index can keep the data in memory, requiring more space.
+    - Writes could also be slower since the index also needs to be updated.
+    - When loading large amounts of data, it might be faster to disable indices, load the data, then rebuild the indices.
+  - Avoid expensive joins: Denormalize where performance demands it.
+  - Partition tables: Break up a table by putting hot spots in a separate table to help keep it in memory.
+  - Tune the query cache: In some cases, the query cache could lead to performance issues.

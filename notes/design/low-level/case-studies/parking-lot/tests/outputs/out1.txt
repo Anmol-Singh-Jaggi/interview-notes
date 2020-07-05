@@ -1,0 +1,33 @@
+Created a parking lot with 10 slots
+Allocated slot number: 1
+Slot number 1 is free
+Allocated slot number: 1
+Slot number 1 is free
+Slot No.    Registration No    Colour
+Allocated slot number: 1
+Allocated slot number: 2
+Allocated slot number: 3
+Allocated slot number: 4
+Slot No.    Registration No    Colour
+1           KA-01-HH-1234      White
+2           KA-01-BB-0001      Black
+3           KA-01-HH-9999      Maroon
+4           KA-01-HH-7777      Red
+Allocated slot number: 5
+Allocated slot number: 6
+Slot No.    Registration No    Colour
+1           KA-01-HH-1234      White
+2           KA-01-BB-0001      Black
+3           KA-01-HH-9999      Maroon
+4           KA-01-HH-7777      Red
+5           KA-01-HH-2701      Blue
+6           KA-01-HH-3141      Black
+Allocated slot number: 7
+Allocated slot number: 8
+KA-01-HH-1234, KA-01-P-333, DL-12-AA-9999
+KA-01-BB-0001, KA-01-HH-3141
+Slot number 2 is free
+Not found
+KA-01-HH-3141
+1, 7, 8
+4

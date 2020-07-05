@@ -1,0 +1,9 @@
+- For collections like HashMap, the iterator can detect if there is a concurrent modification.
+- It does this by using a `volatile` counter on the collection object:
+  - When the collection is updated, the counter is incremented.
+  - When an Iterator is created, the current value of the counter is embedded in the Iterator object.
+  - When an Iterator operation is performed, the method compares the two counter values and throws a `ConcurrentModificationException` if they are different.
+- Note that JVM does this only on a best-effort basis; its not guaranteed to always detect concurrent modifications.
+- We also have `Fail-Safe` iterators, which handle this problem by first generating a copy over the collection and then iterating over it.
+- Some collections have fail-safe while others have fail-fast.
+- For example, `CopyOnWriteArrayList` has fail-safe iterators. 

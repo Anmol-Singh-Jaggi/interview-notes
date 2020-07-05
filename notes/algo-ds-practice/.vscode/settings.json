@@ -1,0 +1,7 @@
+{
+    "files.exclude": {
+        "**/.editorconfig": true,
+        "**/.mypy_cache": true,
+        "**/pylama.ini": true
+    }
+}

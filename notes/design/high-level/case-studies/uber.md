@@ -1,0 +1,2 @@
+- Similar to yelp mostly.
+- But to avoid a lot of frequent modifications to the quad tree, we will buffer the location updates in a hash table for some time, then flush them to the quad tree.

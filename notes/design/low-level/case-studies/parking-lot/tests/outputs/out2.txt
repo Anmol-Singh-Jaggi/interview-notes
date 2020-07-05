@@ -1,0 +1,14 @@
+Created a parking lot with 1 slots
+Allocated slot number: 1
+Slot number 1 is free
+Allocated slot number: 1
+Slot number 1 is free
+Slot No.    Registration No    Colour
+Allocated slot number: 1
+Sorry, parking lot is full
+Slot No.    Registration No    Colour
+1           KA-01-HH-1234      White
+Not found
+1
+
+1

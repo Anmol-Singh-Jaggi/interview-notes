@@ -1,0 +1,7 @@
+Created a parking lot with 5 slots
+Allocated slot number: 1
+Slot number 1 is free
+Slot No.    Registration No    Colour
+Not found
+
+

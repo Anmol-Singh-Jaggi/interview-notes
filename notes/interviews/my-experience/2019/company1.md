@@ -1,0 +1,11 @@
+- Sorted matrix find element.
+- Excel column question (base 26 conversion).
+- Generate all balanced parantheses given an input number 'n'.
+- Find majority element in sorted array.
+- Using 3 threads print `1,2,3,1,2,3,1,2....` infinitely.
+- Python vs Java.
+- Why not to use Python for web server?
+- Race condition question (see your stackoverlow account).
+- Database indices.
+- B-Tree vs Hash table.
+- Isolation levels of DB + Conflicts (Dirty read, Lost update etc.)

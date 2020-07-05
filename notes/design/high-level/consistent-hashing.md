@@ -1,0 +1,24 @@
+- Imagine a cluster of 10 servers 0, 1, .. 9.
+- Lets say 100 users are load-balanced among these 10 servers equally using normal hashing (u_server = u_id % 10).
+- Now imagine server 2 fails; corresponding users will have nowhere to go.
+- Meaning that every user will have to be remapped (since MOD has become 9 from 10).
+- Basically, if earlier user 13 was mapped to server 3 (13 % 10), now it will be mapped to 4 (13 % 9).
+- This can be troublesome in some cases (sticky sessions, sharding etc).
+- Therefore, we maintain an AVL tree containing all the server ids.
+- For example, server0 will be inserted as the pair `<0, 9>` indicating that all user ids <= 9 will be handled by server 0.
+- Similarly, server1 as `<10, 19>`and so on till server9 as `<90, 99>`.
+- So the AVL map will have 10 entries.
+- Now, lets say we want to map user 11, then we do a lower bound on the tree to find that server1 is handling this user.
+- Imagine that after some time, server1 crashes, then we'll detect and remove its mapping from the tree.
+- Now user 11 will be mapped to server2.
+- This way, there is no need to rehash all the entries again.
+- But this introduces the problem of *thundering herd*. Meaning that server2 will have to handle all users of server1.
+- It might happen that server2 fails due to overload.
+- Now server3 will have to handle users of server1 and server2, thereby failing again.
+- This way all servers will fail in a cascading manner.
+- To prevent this, we can use multiple hash functions.
+- In such a case, server0 will be mapped to multiple locations using different hash functions (for example: 0, 15, 20 etc.).
+- Similarly all servers will be mapped multiple times using the same set of hash functions.
+- Now if server0 fails, only some of its users will go to server1; rest will be mapped to (almost) different servers, by introducing some randomness.
+- Note that we have to use a BST and not an array as the array size will have to be as large as the number of possible user ids.
+- Using BST means that now the hash complexity would be `O(logn)` rather than `O(1)`.

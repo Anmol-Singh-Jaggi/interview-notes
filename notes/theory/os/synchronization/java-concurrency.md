@@ -1,0 +1,12 @@
+# Java concurrency
+- The difference between `thenApply()` vs `thenApplySync()` is that the latter is executed on a different thread pool.
+- The difference between `Future` and `CompletableFuture` is that the latter is similar to a `Promise` and can be used to compose async tasks.
+- The difference between `thenAccept()` and `thenApply()` is that the former always returns a `Future<Void>`.
+- The difference between `thenApply()` and `thenCompose()` is that the former acts as `map()` and the latter acts as `flatMap()`.
+- References:
+  - https://stackoverflow.com/questions/47489338/what-is-the-difference-between-thenapply-and-thenapplyasync-of-java-completablef/47489654
+  - https://stackoverflow.com/questions/46060438/in-which-thread-does-completablefutures-completion-handlers-execute-in/46060587#46060587
+  - https://stackoverflow.com/questions/14541975/whats-the-difference-between-a-future-and-a-promise/
+  - https://stackoverflow.com/questions/45174233/difference-between-thenaccept-and-thenapply
+  - https://stackoverflow.com/questions/43019126/completablefuture-thenapply-vs-thencompose
+  - https://4comprehension.com/completablefuture-the-difference-between-thenapply-thenapplyasync/

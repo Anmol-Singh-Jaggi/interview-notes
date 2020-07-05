@@ -1,0 +1,23 @@
+Q1. You are given two arrays -:
+
+	-	capacity[] -> Representing the capacities of machines
+	- weights[] -> Representing the weights of boxes
+	
+	Each machine takes 1 unit time to load a box and put it on a train.
+	Each machine can carry only 1 box at a time. The weight of the box should be <= capacity of the machine it is being loaded on.
+	You have to tell the minimum number of time in which we can load all the boxes onto the train.
+
+
+Solutions -:
+
+Solution 1 -:
+
+Sort both the arrays in decreasing order.
+Init ans=0
+while weights[] array has some elements -:
+	Iterate over the capacity[] array	and check if capacity[i] can store weights[i]; if yes then mark the box as used. When you reach the end of the capacity array, increment ans
+	Remove all the used boxes from weights[]
+
+Solution 2 -:
+
+Binary search for the answer.

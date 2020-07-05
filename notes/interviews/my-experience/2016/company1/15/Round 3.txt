@@ -1,0 +1,111 @@
+Q1. Find the number of shortest paths in an unweighted graph from a source vertex to a target vertex.
+		
+Solution -:
+
+Modified BFS -:
+
+ 1) Maintain an array count[] such that count[x] = the number of shortest paths from source to vertex 'x'.
+ 2) Maintain an array dist[] such that dist[x] = shortest distance from source to vertex 'x'.
+ 3) Apply normal BFS
+  3.1) Let vertex 'u' be the node just popped out of the queue.
+  3.2) Let vertex 'v' be one of its neighbours.
+  3.3) If 'v' has been discovered for the first time -:
+   3.3.1) Update count[v] = count[u]
+   3.3.2) Update dist[v] = dist[u] + 1
+  3.4) Else -:
+   3.4.1) If dist[v] == dist[u] + 1 -: (We found another shortest path)
+    3.4.1.1) Update count[v] = count[v] + count[u]
+   3.4.2) Else if dist[v] > dist[u] + 1 -: (We found a new path which was shorter than the current shortest path)
+    3.4.2.1) Update count[v] = count[u]
+    3.4.2.2) Update dist[v] = dist[u]   
+   3.4.3) Else (We found a path which was longer than the current shortest path)
+    3.4.3.1) Do nothing
+
+
+Code -:
+
+#include<bits/stdc++.h>
+#define pb push_back
+#define mp make_pair
+#define all(x) x.begin(),x.end()
+#define fastin std::ios::sync_with_stdio(false);cin.tie(nullptr)
+#define cout_precision(x) cout<<std::fixed<<setprecision(x)
+using namespace std;
+
+// Complexity -> O( E + V )
+
+typedef vector<vector<size_t> > AdjList;
+
+int BFS ( const AdjList& adjList, const size_t& source, const size_t& target )
+{
+  // dist[i] -> Shortest distance of vertex i from source
+  // dist[i] = -1 means that vertex i has not been discovered yet
+  vector<int> dist ( adjList.size(), -1 );
+
+  // numShortest[i] -> Number of shortest paths to vertex i from source
+  vector<size_t> numShortest ( adjList.size(), 0 );
+
+  queue<size_t> bfsQueue;
+
+  bfsQueue.push ( source );
+  dist[source] = 0;
+  numShortest[source] = 1;
+
+  while ( !bfsQueue.empty() )
+  {
+    // Could be further optimized by breaking as soon as we pop target from the queue
+    // Need to maintain a boolean array solved[] for this
+
+    size_t u = bfsQueue.front();
+    bfsQueue.pop();
+
+    for ( size_t i = 0; i < adjList[u].size(); i++ )
+    {
+      size_t v = adjList[u][i];
+      if ( dist[v] == -1 )
+      {
+        dist[v] = dist[u] + 1;
+        numShortest[v] = numShortest[u];
+        bfsQueue.push ( v );
+      }
+      else
+      {
+        if ( dist[v] == dist[u] + 1 )
+        {
+          numShortest[v] += numShortest[u];
+        }
+        else if ( dist[v] > dist[u] + 1 )
+        {
+          dist[v] = dist[u] + 1;
+          numShortest[v] = numShortest[u];
+        }
+      }
+    }
+  }
+
+  print ( dist );
+  print ( numShortest );
+
+  return numShortest[target];
+}
+
+
+int main()
+{
+  AdjList adjList ( 5 );
+
+  adjList[0].pb ( 1 );
+  adjList[0].pb ( 2 );
+
+  adjList[1].pb ( 2 );
+  adjList[1].pb ( 3 );
+  adjList[1].pb ( 4 );
+
+  adjList[2].pb ( 1 );
+  adjList[2].pb ( 3 );
+
+  adjList[3].pb ( 4 );
+
+  print ( BFS ( adjList, 0, 3 ) );
+}
+
