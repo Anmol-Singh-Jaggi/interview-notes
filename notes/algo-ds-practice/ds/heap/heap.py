@@ -153,16 +153,17 @@ class Heap:
     def remove(self, item):
         if not self.contains(item):
             raise Exception(f'Item {item} not found!')
-        self.num_items -= 1
         self.frequency_map[item] -= 1
         if self.frequency_map[item] > 0:
+            self.num_items -= 1
             return
         del self.frequency_map[item]
         # Modify the value at index to inf or -inf and sift it up
         # so that it comes on top, and then simply call pop().
-        sentinel = inf if self.is_min_heap else inf
+        sentinel = -inf if self.is_min_heap else inf
         index = self.indices_map[item]
         del self.indices_map[item]
+        self.frequency_map[sentinel] = 1
         self.indices_map[sentinel] = index
         self.data[index] = sentinel
         self._sift_up(index)
@@ -193,23 +194,24 @@ def main():
     elements = [20, 30, 20, 30, 10, 40, 50]
     heap = Heap(elements)
     heap.displayTree()
-
+    heap.remove(20)
+    heap.displayTree()
     heap.push(6)
     heap.push(41)
+    heap.displayTree()
     heap.pop() # Remove 6
     heap.displayTree()
     print(heap.get_all_items())
-
-    heap_sorted = heap.get_all_items_sorted()
-    print(heap_sorted)
+    print(heap.get_all_items_sorted())
     heap.push(7)
     heap.push(6)
     heap.push(7)
-    heap.displayTree()
-    heap.remove(7)
-    heap.displayTree()
+    heap.remove(41)
     print(heap.contains(7))
-    print(heap.contains(6))
+    print(heap.contains(41))
+    print(heap.get_all_items_sorted())
+    heap.displayTree()
+
 
 
 if __name__ == "__main__":
