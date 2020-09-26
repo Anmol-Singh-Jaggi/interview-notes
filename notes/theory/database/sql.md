@@ -1,3 +1,6 @@
+# Links
+- Fantastic crash-course: https://sqlbolt.com
+
 # Procedural vs Non-Procedural
 - Languages can either be procedural or non-procedural.
 - Procedural means we need to specify **how to do**. Example -> C, Java etc.
@@ -152,3 +155,4 @@ WHERE ...
 - `'val1' = 'val2'` -> Exact matching.
 
 ## ORDER BY
+- Todo
